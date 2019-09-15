@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ISearchAutocompleteOption } from '../../Models/search';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { SearchService } from '../../Services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -12,8 +13,8 @@ import { of } from 'rxjs';
 export class SearchComponent implements OnInit {
   searchForm: FormGroup;
   options: ISearchAutocompleteOption[];
-
-  constructor() {}
+  limitOptionsTo = 10;
+  constructor(public searchService: SearchService) {}
 
   ngOnInit() {
     this.initSearchForm();
@@ -32,7 +33,9 @@ export class SearchComponent implements OnInit {
       .valueChanges.pipe(
         debounceTime(250), // Adding debounce to prevent API calls on each value change (reduce API calls)
         switchMap(value => {
-          return value.length >= 3 ? of(this.getCountries()) : of(undefined);
+          return value.length >= 3
+            ? this.searchService.getSearchSuggestions(value, this.limitOptionsTo)
+            : of(undefined);
         })
       )
       .subscribe((autocompleteSuggestions: any) => {
@@ -42,9 +45,5 @@ export class SearchComponent implements OnInit {
           this.options = [];
         }
       });
-  }
-
-  getCountries(): any {
-    return ['Australia', 'new zeealand'];
   }
 }
