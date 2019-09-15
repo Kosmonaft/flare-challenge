@@ -5,6 +5,7 @@ import { debounceTime, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { SearchService } from '../../Services/search.service';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
+import { IRestCountry } from '../../Models/rest-countries';
 
 @Component({
   selector: 'app-search',
@@ -16,6 +17,8 @@ export class SearchComponent implements OnInit {
   options: ISearchAutocompleteOption[];
   limitOptionsTo = 10;
   searchSubmitted = false;
+  selectedCountry: IRestCountry;
+
   constructor(public searchService: SearchService) {}
 
   ngOnInit() {
@@ -58,5 +61,9 @@ export class SearchComponent implements OnInit {
 
   onSelection(event: MatAutocompleteSelectedEvent) {
     this.searchSubmitted = true;
+    this.searchService.getCountry(this.searchForm.get('searchInput').value).subscribe((selectedCountry: IRestCountry) => {
+      this.selectedCountry = selectedCountry[0];
+      console.log(this.selectedCountry);
+    });
   }
 }

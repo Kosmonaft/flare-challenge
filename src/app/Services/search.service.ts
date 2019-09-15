@@ -63,4 +63,8 @@ export class SearchService {
       return finalResults;
     }
   }
+
+  getCountry(countryName: string): Observable<IRestCountry> {
+    return this.httpService.get(`${this.nameApi}/${countryName}`);
+  }
 }

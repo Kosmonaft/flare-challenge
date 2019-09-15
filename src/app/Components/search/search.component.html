@@ -7,3 +7,21 @@
         <mat-option *ngFor="let option of options" [value]="option.name">{{option.name}} <small>(Code: {{option.code}})</small></mat-option>
     </mat-autocomplete>
 </form>
+
+<div *ngIf="selectedCountry">
+    <div>
+        {{selectedCountry.flag}}
+    </div>
+    <div>
+        {{selectedCountry.name}}
+    </div>
+    <div>
+        {{selectedCountry.currencies[0].name}}
+    </div>
+    <div>
+        {{selectedCountry.latlng}}
+    </div>
+    <div>
+        {{selectedCountry.area}}
+    </div>
+</div>
