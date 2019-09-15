@@ -13,9 +13,10 @@ import { HistoryComponent } from './Components/history/history.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { HeaderComponent } from './Components/header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, SearchComponent, HistoryComponent],
+  declarations: [AppComponent, SearchComponent, HistoryComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
