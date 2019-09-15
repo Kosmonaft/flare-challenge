@@ -2,6 +2,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
 
+## Requirements
+- npm
+- node.js
+- angular-cli
+
 ## Installation
 Run `npm install` for installing all packages
 
