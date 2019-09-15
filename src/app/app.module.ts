@@ -16,6 +16,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+
+/* NGRX */
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 
