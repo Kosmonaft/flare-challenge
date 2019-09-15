@@ -1,27 +1,31 @@
-<form [formGroup]="searchForm">
-    <mat-form-field>
-        <input type="text" matInput formControlName="searchInput" [matAutocomplete]="auto">
-    </mat-form-field>
+<div class="row justify-content-md-center">
+    <div class="col col-xs-12 col-lg-6">
+        <form [formGroup]="searchForm">
+            <mat-form-field>
+                <input type="text" matInput formControlName="searchInput" [matAutocomplete]="auto" placeholder="Search country by name or code">
+            </mat-form-field>
 
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelection($event)">
-        <mat-option *ngFor="let option of options" [value]="option.name">{{option.name}} <small>(Code: {{option.code}})</small></mat-option>
-    </mat-autocomplete>
-</form>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelection($event)">
+                <mat-option *ngFor="let option of options" [value]="option.name">{{option.name}} <small>(Code:
+                        {{option.code}})</small></mat-option>
+            </mat-autocomplete>
+        </form>
+    </div>
+</div>
+<div *ngIf="selectedCountry" class="row justify-content-md-center">
+    <div class="col col-xs-12 col-lg-6 d-flex justify-content-md-center">
 
-<div *ngIf="selectedCountry">
-    <div>
-        {{selectedCountry.flag}}
-    </div>
-    <div>
-        {{selectedCountry.name}}
-    </div>
-    <div>
-        {{selectedCountry.currencies[0].name}}
-    </div>
-    <div>
-        {{selectedCountry.latlng}}
-    </div>
-    <div>
-        {{selectedCountry.area}}
+        <div class="card" style="width: 18rem;">
+            <img src="{{selectedCountry.flag}}" class="card-img-top" alt="{{selectedCountry.name}} flag">
+            <div class="card-body">
+                <h5 class="card-title">{{selectedCountry.name}}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Currency name: <b>{{selectedCountry.currencies[0].name}}</b></li>
+                <li class="list-group-item">Latitude/longitude: <b>{{selectedCountry.latlng}}</b></li>
+                <li class="list-group-item">Land area: <b>{{selectedCountry.area}}</b></li>
+            </ul>
+        </div>
+
     </div>
 </div>
