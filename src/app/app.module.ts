@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchComponent } from './Components/search/search.component';
 import { HistoryComponent } from './Components/history/history.component';
+import { HeaderComponent } from './Components/header/header.component';
 
 /* Angular Material modules */
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { HeaderComponent } from './Components/header/header.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [AppComponent, SearchComponent, HistoryComponent, HeaderComponent],
@@ -26,7 +28,9 @@ import { HeaderComponent } from './Components/header/header.component';
     MatInputModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatMenuModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
