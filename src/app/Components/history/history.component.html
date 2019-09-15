@@ -1,15 +1,18 @@
-<div class="row justify-content-md-center" *ngIf="countries">
+<div class="row justify-content-md-center" *ngIf="countries && countries.length > 0">
     <div class="col col-xs-12 col-lg-6">
+        <h3>You have searched for:</h3>
         <div class="list-group">
-            <div class="list-group-item list-group-item-action" *ngFor="let country of countries" (click)="openDialog(country)">
+            <button class="list-group-item list-group-item-action" *ngFor="let country of countries" (click)="openDialog(country)">
                 {{country.name}}
-            </div>
+            </button>
         </div>
     </div>
 </div>
 
 <div class="row justify-content-md-center" *ngIf="!countries || countries.length == 0">
-    <div class="col col-xs-12 col-lg-6">
-        You haven't searched for any countries
+    <div class="col col-xs-12 col-lg-6 text-center">
+        <h3>You haven't searched for any countries</h3>
+        <br>
+        <button mat-stroked-button color="primary" [routerLink]="['/']" class="mt-1">Go to Search</button>
     </div>
 </div>
