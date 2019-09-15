@@ -3,7 +3,7 @@
         <input type="text" matInput formControlName="searchInput" [matAutocomplete]="auto">
     </mat-form-field>
 
-    <mat-autocomplete #auto="matAutocomplete">
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelection($event)">
         <mat-option *ngFor="let option of options" [value]="option.name">{{option.name}} <small>(Code: {{option.code}})</small></mat-option>
     </mat-autocomplete>
 </form>

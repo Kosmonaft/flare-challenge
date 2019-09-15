@@ -4,6 +4,7 @@ import { ISearchAutocompleteOption } from '../../Models/search';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { SearchService } from '../../Services/search.service';
+import { MatAutocompleteSelectedEvent } from '@angular/material';
 
 @Component({
   selector: 'app-search',
@@ -14,6 +15,7 @@ export class SearchComponent implements OnInit {
   searchForm: FormGroup;
   options: ISearchAutocompleteOption[];
   limitOptionsTo = 10;
+  searchSubmitted = false;
   constructor(public searchService: SearchService) {}
 
   ngOnInit() {
@@ -33,8 +35,15 @@ export class SearchComponent implements OnInit {
       .valueChanges.pipe(
         debounceTime(250), // Adding debounce to prevent API calls on each value change (reduce API calls)
         switchMap(value => {
+          if (this.searchSubmitted) {
+            this.searchSubmitted = false;
+            return of(undefined);
+          }
           return value.length >= 3
-            ? this.searchService.getSearchSuggestions(value, this.limitOptionsTo)
+            ? this.searchService.getSearchSuggestions(
+                value,
+                this.limitOptionsTo
+              )
             : of(undefined);
         })
       )
@@ -45,5 +54,9 @@ export class SearchComponent implements OnInit {
           this.options = [];
         }
       });
+  }
+
+  onSelection(event: MatAutocompleteSelectedEvent) {
+    this.searchSubmitted = true;
   }
 }

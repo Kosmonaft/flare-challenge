@@ -47,7 +47,7 @@ export class SearchService {
 
     // Get unique items from the responses
     const uniqueResults = new Set(allResults.map((country: IRestCountry) => JSON.stringify(country)));
-    
+
     // return the x results (x set in search.component)
     const finalResults = [...uniqueResults].map((country => {
       const countryDetails = JSON.parse(country) as IRestCountry;
