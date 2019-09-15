@@ -12,7 +12,7 @@ export function countryReducers(state = countryState, action: CountryActions): I
     }
 
     case ECountryActions.GetCountry: {
-      return { ...state };
+      return {...state};
     }
 
     default:

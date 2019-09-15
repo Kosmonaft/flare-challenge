@@ -1,1 +1,13 @@
-<p>history works!</p>
+<div class="row justify-content-md-center" *ngIf="countries">
+    <div class="col col-xs-12 col-lg-6">
+        <ul>
+            <li *ngFor="let country of countries">{{country.name}}</li>
+        </ul>
+    </div>
+</div>
+
+<div class="row justify-content-md-center" *ngIf="!countries || countries.length == 0">
+    <div class="col col-xs-12 col-lg-6">
+        You haven't searched for any countries
+    </div>
+</div>
