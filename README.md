@@ -24,9 +24,10 @@ For the search history I used [ngrx](https://ngrx.io/). As alternative I thought
 I believe that for application in which the Extensibility is important a state management system/service is crusial.
 Unfortunately for such a small apps it produce a lot of additional code and package size + extend the time to finish the task as I had to configure the state.
 
-### What I wish to do differently
+### What I wish I do differently
 - replace Angular Material components with NGBoostrap 
 - work a bit on the layout
+- create a child component for Country which will be reused in the search result and in the modal
 
 ### Last notes
 If I had more time (if I didn't spent those time on trying to make the Angular Material components working), I would definetely add some Unit Tests.
