@@ -17,7 +17,7 @@ export class SearchService {
   getSuggestions(forUrl: string): Observable<IRestCountry[] | IRestCountry> {
     return this.httpService.get(forUrl).pipe(
       map((res: IRestCountry[] | IRestCountry) => {
-        return res ;
+        return res;
       }),
       catchError((err: any) => {
         return of(undefined);
@@ -42,18 +42,25 @@ export class SearchService {
   }
 
   getUniqueResults(countrySuggestsions: (IRestCountry[] | IRestCountry)[], limitResultsTo: number): ISearchAutocompleteOption[] {
-    const allResults = countrySuggestsions[0] as IRestCountry[];
-    allResults.push(countrySuggestsions[1] as IRestCountry);
+    if (!countrySuggestsions[0] && !countrySuggestsions[1]) {
+      return [];
+    } else if (!countrySuggestsions[0] && countrySuggestsions[1] as IRestCountry ) {
+      const finalResults = countrySuggestsions[1] as IRestCountry;
+      return [{name: finalResults.name, code: finalResults.alpha3Code }];
+    } else {
+      const allResults = countrySuggestsions[0] as IRestCountry[];
+      if (countrySuggestsions[1]) {
+        allResults.push(countrySuggestsions[1] as IRestCountry);
+      }
+      // Get unique items from the responses
+      const uniqueResults = new Set(allResults.map((country: IRestCountry) => JSON.stringify(country)));
+      // return the x results (x set in search.component)
+      const finalResults = [...uniqueResults].map((country => {
+        const countryDetails = JSON.parse(country) as IRestCountry;
+        return { name: countryDetails.name, code: countryDetails.alpha3Code };
+      })).splice(0, limitResultsTo) as ISearchAutocompleteOption[];
 
-    // Get unique items from the responses
-    const uniqueResults = new Set(allResults.map((country: IRestCountry) => JSON.stringify(country)));
-
-    // return the x results (x set in search.component)
-    const finalResults = [...uniqueResults].map((country => {
-      const countryDetails = JSON.parse(country) as IRestCountry;
-      return { name: countryDetails.name, code: countryDetails.alpha3Code };
-    })).splice(0, limitResultsTo) as ISearchAutocompleteOption[];
-
-    return finalResults;
+      return finalResults;
+    }
   }
 }
