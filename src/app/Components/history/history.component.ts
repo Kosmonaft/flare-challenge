@@ -20,8 +20,6 @@ export class HistoryComponent implements OnInit {
         for (const key in countryState) {
           if (countryState.hasOwnProperty(key)) {
             this.countries.push(countryState[key]);
-            console.log(this.countries);
-            console.log(countryState[key])
           }
         }
       });

@@ -16,7 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { MatTreeModule } from '@angular/material/tree';
+
 /* NGRX */
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './Store/reducers';
@@ -30,7 +30,6 @@ import { reducers, metaReducers } from './Store/reducers';
     MatAutocompleteModule,
     MatFormFieldModule,
     MatInputModule,
-    MatTreeModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
