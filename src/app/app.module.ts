@@ -19,7 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 /* NGRX */
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
+import { reducers, metaReducers } from './Store/reducers';
 
 @NgModule({
   declarations: [AppComponent, SearchComponent, HistoryComponent, HeaderComponent],

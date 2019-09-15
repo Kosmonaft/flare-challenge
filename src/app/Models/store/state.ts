@@ -5,5 +5,5 @@ export interface IAppState {
 }
 
 export interface ICountryState {
-  countries: IRestCountry[];
+  [countrtyName: string]: IRestCountry;
 }

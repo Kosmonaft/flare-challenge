@@ -7,7 +7,7 @@ export function countryReducers(state = countryState, action: CountryActions): I
     case ECountryActions.SetCountry: {
       return {
         ...state,
-        ...action.payload
+        [action.payload.name]: action.payload
       };
     }
 

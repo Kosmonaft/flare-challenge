@@ -6,6 +6,9 @@ import { of } from 'rxjs';
 import { SearchService } from '../../Services/search.service';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
 import { IRestCountry } from '../../Models/rest-countries';
+import { Store, select } from '@ngrx/store';
+import { IAppState, ICountryState } from '../../models/store/state';
+import { SetCountry } from '../../Store/actions/country.actions';
 
 @Component({
   selector: 'app-search',
@@ -19,7 +22,7 @@ export class SearchComponent implements OnInit {
   searchSubmitted = false;
   selectedCountry: IRestCountry;
 
-  constructor(public searchService: SearchService) {}
+  constructor(public searchService: SearchService, public store: Store<IAppState>) {}
 
   ngOnInit() {
     this.initSearchForm();
@@ -63,6 +66,8 @@ export class SearchComponent implements OnInit {
     this.searchSubmitted = true;
     this.searchService.getCountry(this.searchForm.get('searchInput').value).subscribe((selectedCountry: IRestCountry) => {
       this.selectedCountry = selectedCountry[0];
+
+      this.store.dispatch(new SetCountry(this.selectedCountry));
     });
   }
 }
