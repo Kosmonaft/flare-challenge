@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { IRestCountries } from '../../Models/rest-countries';
 import { ISearchAutocompleteOption } from '../../Models/search';
 import { debounceTime, switchMap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-search',
