@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { IAppState, ICountryState } from '../../models/store/state';
 import { IRestCountry } from '../../Models/rest-countries';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-history',
@@ -11,7 +13,7 @@ import { IRestCountry } from '../../Models/rest-countries';
 export class HistoryComponent implements OnInit {
   countries: IRestCountry[] = [];
 
-  constructor(public store: Store<IAppState>) {}
+  constructor(public store: Store<IAppState>, public dialog: MatDialog) {}
 
   ngOnInit() {
     this.store
@@ -23,5 +25,9 @@ export class HistoryComponent implements OnInit {
           }
         }
       });
+  }
+
+  openDialog(country: IRestCountry) {
+    const dialogRef = this.dialog.open(DialogComponent, { data: { country } });
   }
 }

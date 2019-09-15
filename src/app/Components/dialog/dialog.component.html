@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>{{data.country.name}}</h1>
+<div mat-dialog-content>
+    <div class="card" style="width: 18rem;">
+        <img src="{{data.country.flag}}" class="card-img-top" alt="{{data.country.name}} flag">
+        <div class="card-body">
+            <h5 class="card-title">{{data.country.name}}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Currency name: <b>{{data.country.currencies[0].name}}</b></li>
+            <li class="list-group-item">Latitude/longitude: <b>{{data.country.latlng}}</b></li>
+            <li class="list-group-item">Land area: <b>{{data.country.area}}</b></li>
+        </ul>
+    </div>
+</div>
