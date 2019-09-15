@@ -63,7 +63,6 @@ export class SearchComponent implements OnInit {
     this.searchSubmitted = true;
     this.searchService.getCountry(this.searchForm.get('searchInput').value).subscribe((selectedCountry: IRestCountry) => {
       this.selectedCountry = selectedCountry[0];
-      console.log(this.selectedCountry);
     });
   }
 }
